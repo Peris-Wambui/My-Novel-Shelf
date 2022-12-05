@@ -15,6 +15,10 @@ gem "puma", "~> 5.0"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
+# faker
+gem "faker"
+
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -43,7 +47,7 @@ end
 
 group :development do
   gem 'listen', '~> 3.3'
-  
+
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   gem "spring"
 end
