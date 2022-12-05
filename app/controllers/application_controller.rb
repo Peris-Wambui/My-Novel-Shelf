@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
     include ActionController::Cookies
+    include Response
 
     def hello_world
         session[:count] = (session[:count] || 0) + 1

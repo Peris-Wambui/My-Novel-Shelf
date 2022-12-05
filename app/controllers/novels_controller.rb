@@ -24,13 +24,14 @@ class NovelsController < ApplicationController
         json_res(@novel, status = 200)
     end
 
+    def destroy
+        @novel = Novel.find(params[:id])
+        @novel.destroy
+        json_res({message: "#{@novel.title} deleted seccessfuly"},status = 200)
+    end
 
 
     private
-    def json_res(object,status = :ok)
-        render json: object, status: status
-    end
-
     def novel_params
         params.permit(:title, :author, :description)
     end
