@@ -1,0 +1,2 @@
+class Bookworm < ApplicationRecord
+end
