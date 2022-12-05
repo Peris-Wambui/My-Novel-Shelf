@@ -14,8 +14,14 @@ class NovelsController < ApplicationController
     end
 
     def create
-        @novel = Novel.create(novel_params)
+        @novel = Novel.create!(novel_params)
         json_res(@novel, status = 201)
+    end
+
+    def update
+        @novel = Novel.find(params[:id])
+        @novel.update(novel_params)
+        json_res(@novel, status = 200)
     end
 
 
