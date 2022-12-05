@@ -13,11 +13,20 @@ class NovelsController < ApplicationController
         render json:(@novel)
     end
 
+    def create
+        @novel = Novel.create(novel_params)
+        json_res(@novel, status = 201)
+    end
+
 
 
     private
     def json_res(object,status = :ok)
         render json: object, status: status
+    end
+
+    def novel_params
+        params.permit(:title, :author, :description)
     end
 end
 
