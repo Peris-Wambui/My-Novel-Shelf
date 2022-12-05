@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_05_052133) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_203741) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookworms", force: :cascade do |t|
+    t.string "email"
+    t.string "password_hash"
+    t.string "password_salt"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "novels", force: :cascade do |t|
     t.string "title"
@@ -20,6 +28,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_052133) do
     t.string "author"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "bookworm_id"
+    t.index ["bookworm_id"], name: "index_novels_on_bookworm_id"
   end
 
 end
