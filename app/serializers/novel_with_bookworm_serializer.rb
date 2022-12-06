@@ -1,3 +1,5 @@
 class NovelWithBookwormSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :title, :read, :description, :author
+  
+  belongs_to :bookworm
 end

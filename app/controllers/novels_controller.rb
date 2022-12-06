@@ -2,22 +2,28 @@ class NovelsController < ApplicationController
     # all the crud functionalities
     # index, create, show update destroy
     def index
-        # @novels = Novel.all
-        # render json: @novels, status:200
+        @novels = Novel.all
+        render json: @novels, status:200
         # json_res(@novels)
-        @bookworm = params[:bookworm]
-        if @bookworm
-            @novel = Novel.search_by_bookworm(@bookworm)
-            render json: @novel
-        else
-            @novel = Novel.all
-            render json: @novels
+        # @bookworm = params[:bookworm]
+        # if @bookworm
+        #     @novel = Novel.search_by_bookworm(@bookworm)
+        #     render json: @novel
+        # else
+        #     @novel = Novel.all
+        #     render json: @novels
+        # end
+        # @novel = Novel.all
+        # render json: @novels
     end
 
     def show
-        # @novel = Novel.find_by(id:params[:id])
-        @novel = Novel.find(params[:id])
-        render json:(@novel)
+        if !authorize
+            # @novel = Novel.find_by(id:params[:id])
+            @novel = Novel.find(params[:id])
+            # render json:(@novel)
+            render json: @novel, serializer: NovelWithBookwormSerializer
+        end
     end
 
     def create
