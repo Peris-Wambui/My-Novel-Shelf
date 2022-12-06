@@ -24,8 +24,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_203741) do
 
   create_table "novels", force: :cascade do |t|
     t.string "title"
-    t.string "description"
     t.string "author"
+    t.string "description"
+    t.boolean "read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "bookworm_id"

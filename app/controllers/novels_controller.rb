@@ -33,7 +33,7 @@ class NovelsController < ApplicationController
 
     private
     def novel_params
-        params.permit(:title, :author, :description)
+        params.permit(:title, :author, :description, :read, :bookworm_id)
     end
 end
 

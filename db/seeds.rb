@@ -13,10 +13,18 @@ class Seed
     end
     def generate_novels
         5.times do |i|
+
+            @bookworm = Bookworm.create!(
+                email:Faker::Internet.email,
+                password: Faker::Internet.password
+            )
+
             novel = Novel.create!(
+                bookworm: @bookworm,
                 title:Faker::Movie.title,
                 author:Faker::Name.name,
-                description:Faker::Lorem.paragraph(sentence_count:4)
+                description:Faker::Lorem.paragraph(sentence_count:4),
+                read:Faker::Boolean.boolean(true_ratio: 0.2)
             )
         end
     end
