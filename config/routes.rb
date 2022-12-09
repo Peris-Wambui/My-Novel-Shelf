@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   resources :novels
   post '/login', to: 'session#create'
   delete 'logout', to: 'sessions#destroy'
-  post '/signup', to: 'bookworm#create'
+  post '/signup', to: 'bookworms#create'
   get '/me', to: 'bookworms#show'
-  get '/booworm', to: 'bookworms#index'
+  get '/bookworm', to: 'bookworms#index'
  
 end

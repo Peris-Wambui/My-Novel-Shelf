@@ -23,7 +23,7 @@ function NovelList() {
               <p>
                 <em>Time to Complete: {novel.minutes_to_complete} minutes</em>
                 &nbsp;·&nbsp;
-                <cite>By {novel.user.username}</cite>
+                <cite>By {novel.email}</cite>
               </p>
               <ReactMarkdown>{novel.instructions}</ReactMarkdown>
             </Box>
