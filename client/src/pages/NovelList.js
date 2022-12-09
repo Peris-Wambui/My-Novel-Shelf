@@ -4,36 +4,36 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Box, Button } from "../styles";
 
-function RecipeList() {
-  const [recipes, setRecipes] = useState([]);
+function NovelList() {
+  const [novels, setNovels] = useState([]);
 
   useEffect(() => {
-    fetch("/recipes")
+    fetch("/novels")
       .then((r) => r.json())
-      .then(setRecipes);
+      .then(setNovels);
   }, []);
 
   return (
     <Wrapper>
-      {recipes.length > 0 ? (
-        recipes.map((recipe) => (
-          <Recipe key={recipe.id}>
+      {novels.length > 0 ? (
+        novels.map((novel) => (
+          <Recipe key={novel.id}>
             <Box>
-              <h2>{recipe.title}</h2>
+              <h2>{novel.title}</h2>
               <p>
-                <em>Time to Complete: {recipe.minutes_to_complete} minutes</em>
+                <em>Time to Complete: {novel.minutes_to_complete} minutes</em>
                 &nbsp;·&nbsp;
-                <cite>By {recipe.user.username}</cite>
+                <cite>By {novel.user.username}</cite>
               </p>
-              <ReactMarkdown>{recipe.instructions}</ReactMarkdown>
+              <ReactMarkdown>{novel.instructions}</ReactMarkdown>
             </Box>
           </Recipe>
         ))
       ) : (
         <>
-          <h2>No Recipes Found</h2>
+          <h2>No Novels Found</h2>
           <Button as={Link} to="/new">
-            Make a New Recipe
+            Make a New Novels
           </Button>
         </>
       )}
@@ -50,4 +50,4 @@ const Recipe = styled.article`
   margin-bottom: 24px;
 `;
 
-export default RecipeList;
+export default NovelList;
