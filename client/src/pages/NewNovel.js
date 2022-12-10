@@ -104,12 +104,6 @@ function NewNovel({bookworm }) {
         <h1>{description}</h1>
         <h1>{read}</h1>
         <cite>By {bookworm.email}</cite>     
-        {/* <p>
-          <em>Time to Complete: {minutesToComplete} minutes</em>
-          &nbsp;·&nbsp;
-          <cite>By {user.username}</cite>
-        </p>
-        <ReactMarkdown>{instructions}</ReactMarkdown> */}
       </WrapperChild>
     </Wrapper>
   );

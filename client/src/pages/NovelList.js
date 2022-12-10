@@ -24,12 +24,6 @@ function NovelList() {
               <h2>{novel.read}</h2>
               <h2>{novel.description}</h2>
               <cite>By {novel.email}</cite>
-              {/* <p>
-                <em>Time to Complete: {novel.minutes_to_complete} minutes</em>
-                &nbsp;·&nbsp;
-                <cite>By {novel.email}</cite>
-              </p>
-              <ReactMarkdown>{novel.instructions}</ReactMarkdown> */}
             </Box>
           </Recipe>
         ))
