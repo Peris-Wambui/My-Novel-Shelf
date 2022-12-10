@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: track_my_novel_shelf_production
   username: track_my_novel_shelf
   password: <%= ENV["TRACK_MY_NOVEL_SHELF_DATABASE_PASSWORD"] %>

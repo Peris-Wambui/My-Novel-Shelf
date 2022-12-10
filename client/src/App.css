@@ -1,0 +1,26 @@
+body{
+    background-image: url(../public/my\ book\ shelf.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    opacity: 0.2em;
+    /* width: 90%; */
+    /* background-size: 100% 100%; */
+     /* height: 95vh; */
+}
+
+.form-input{
+    background-color: whitesmoke;
+}
+.nav-bar{
+    background-color: orange;
+    /* width: 120%; */
+}
+.p-p{
+background-color: whitesmoke;
+/* font-weight: bolder; */
+font-size: xx-large;
+}

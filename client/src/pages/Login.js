@@ -10,6 +10,13 @@ function Login({ onLogin }) {
   return (
     <Wrapper>
       <Logo>Track My Shelf</Logo>
+      <p className="p-p"> 
+      <center>Welcome!</center> 
+      <br/>
+      <center>Reading novels is a hobby we treasure.</center>
+      <br/>
+      <center>It is time to track our unread and read novels for a catchUp.</center> 
+      </p>
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />

@@ -1,37 +1,40 @@
 import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
+import '../App.css';
 import NavBar from "./NavBar";
+import Footer from "./Footer";
 import Login from "../pages/Login";
 import NovelList from "../pages/NovelList";
 import NewNovel from "../pages/NewNovel";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [bookworm, setBookworm] = useState(null);
 
   useEffect(() => {
     // auto-login
-    fetch("/me").then((r) => {
+    fetch("/novels").then((r) => {
       if (r.ok) {
-        r.json().then((user) => setUser(user));
+        r.json().then((bookworm) => setBookworm(bookworm));
       }
     });
   }, []);
 
-  if (!user) return <Login onLogin={setUser} />;
+  if (!bookworm) return <Login onLogin={setBookworm} />;
 
   return (
     <>
-      <NavBar user={user} setUser={setUser} />
+      <NavBar bookworm={bookworm} setBookworm={setBookworm} />
       <main>
         <Switch>
           <Route path="/new">
-            <NewNovel user={user} />
+            <NewNovel bookworm={bookworm} />
           </Route>
           <Route path="/">
             <NovelList />
           </Route>
         </Switch>
       </main>
+      <Footer/>
     </>
   );
 }

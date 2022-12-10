@@ -26,7 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_05_203741) do
     t.string "title"
     t.string "author"
     t.string "description"
-    t.boolean "read"
+    t.string "read"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "bookworm_id"

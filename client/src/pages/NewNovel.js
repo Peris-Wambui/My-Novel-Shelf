@@ -9,18 +9,6 @@ function NewNovel({bookworm }) {
   const [author, setAuthor] = useState("");
   const [description, setDescription] = useState("");
   const [read, setRead] = useState("");
-  // const [minutesToComplete, setMinutesToComplete] = useState("30");
-//   const [instructions, setInstructions] = useState(`Welcome! We are bookworm.
-  
-// ## Ingredients
-
-// - 1c Sugar
-// - 1c Spice
-
-// ## Instructions
-
-// **Mix** sugar and spice. _Bake_ for 30 minutes.
-//   `);
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
@@ -28,7 +16,7 @@ function NewNovel({bookworm }) {
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-    fetch("/novels", {
+    fetch("novels", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +43,8 @@ function NewNovel({bookworm }) {
 
   return (
     <Wrapper>
-      <WrapperChild>
+      <WrapperChild className="form-input">
+        <h1>Welcome Novel Love! Keep a record of your pages.</h1>
         <h2>Add A Novel</h2>
         <form onSubmit={handleSubmit}>
           <FormField>
@@ -77,7 +66,7 @@ function NewNovel({bookworm }) {
             />
           </FormField>
           <FormField>
-            <Label htmlFor="description"></Label>
+            <Label htmlFor="description">Description</Label>
             <Input
               type="text"
               id="description"
@@ -86,7 +75,7 @@ function NewNovel({bookworm }) {
             />
           </FormField>
           <FormField>
-            <Label htmlFor="read"></Label>
+            <Label htmlFor="read">Read</Label>
             <select 
             type="text"
             id="read"
@@ -114,7 +103,7 @@ function NewNovel({bookworm }) {
         <h1>{author}</h1>
         <h1>{description}</h1>
         <h1>{read}</h1>
-              
+        <cite>By {bookworm.email}</cite>     
         {/* <p>
           <em>Time to Complete: {minutesToComplete} minutes</em>
           &nbsp;·&nbsp;

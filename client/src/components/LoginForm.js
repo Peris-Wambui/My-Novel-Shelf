@@ -27,7 +27,7 @@ function LoginForm({ onLogin }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="form-input">
       <FormField>
         <Label htmlFor="email">Email</Label>
         <Input

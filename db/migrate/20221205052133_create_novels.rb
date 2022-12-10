@@ -7,7 +7,7 @@ class CreateNovels < ActiveRecord::Migration[7.0]
       t.column :title, :string
       t.column :author, :string
       t.column :description, :string
-      t.column :read, :boolean 
+      t.column :read, :string 
 
       t.timestamps
     end

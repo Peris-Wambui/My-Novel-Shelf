@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../styles";
 
-function NavBar({ user, setUser }) {
+function NavBar({ bookworm, setBookworm }) {
   function handleLogoutClick() {
     fetch("/logout", { method: "DELETE" }).then((r) => {
       if (r.ok) {
-        setUser(null);
+        setBookworm(null);
       }
     });
   }
 
   return (
-    <Wrapper>
+    <Wrapper className="nav-bar">
       <Logo>
         <Link to="/">Track My Shelf</Link>
       </Logo>
@@ -26,6 +26,7 @@ function NavBar({ user, setUser }) {
         </Button>
       </Nav>
     </Wrapper>
+
   );
 }
 
