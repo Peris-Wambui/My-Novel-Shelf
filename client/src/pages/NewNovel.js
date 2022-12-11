@@ -1,44 +1,49 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 import styled from "styled-components";
-// import ReactMarkdown from "react-markdown";
-import { Button, Error, FormField, Input, Label } from "../styles";
+import {Post , Patch } from "./crud";
+import { Button, FormField, Input, Label } from "../styles";
 
-function NewNovel({bookworm }) {
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [description, setDescription] = useState("");
-  const [read, setRead] = useState("");
-  const [errors, setErrors] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const history = useHistory();
+function NewNovel({onSaved, defaultData }) {
+  const history = useHistory()
+  const [inputData, setInputData]= useState({
+    title:defaultData ? defaultData.title : '',
+    author:defaultData ? defaultData.author: '',
+    description:defaultData ? defaultData.description: '',
+    read:defaultData ? defaultData.read: '',
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    setIsLoading(true);
-    fetch("novels", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title,
-        author,
-        description,
-        read,
-        
-        // instructions,
-        // minutes_to_complete: minutesToComplete,
-        bookworm_id: bookworm.id,
-      }),
-    }).then((r) => {
-      setIsLoading(false);
-      if (r.ok) {
+  })
+
+  const [saving, setSaving] = useState(false)
+
+  function handleChange(event) {
+		setInputData({
+			...inputData,
+			[event.target.name]: event.target.value
+		})
+	}
+
+  function addNovel(event) {
+		event.preventDefault();
+		setSaving(true)
+		// if defaultData is defined update,if not defined create
+		if (defaultData) {
+			Patch({ ...inputData, id: defaultData.id }).then((updatedNovel) => {
+				setSaving(false);
+        onSaved(updatedNovel);
         history.push("/");
-      } else {
-        r.json().then((err) => setErrors(err.errors));
-      }
-    });
+				console.log(updatedNovel);
+        history.push("/novels");
+			})
+		} else {
+			Post(inputData).then(NewNovel => {
+				setSaving(false);
+        onSaved(NewNovel);
+        history.push("/novels");
+				console.log(NewNovel);
+
+			});
+    }
   }
 
   return (
@@ -46,14 +51,14 @@ function NewNovel({bookworm }) {
       <WrapperChild className="form-input">
         <h1>Welcome Novel Love! Keep a record of your pages.</h1>
         <h2>Add A Novel</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={addNovel}>
           <FormField>
             <Label htmlFor="title">Title</Label>
             <Input
               type="text"
               id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              value={inputData.title}
+              onChange={handleChange}
             />
           </FormField>
           <FormField>
@@ -61,8 +66,8 @@ function NewNovel({bookworm }) {
             <Input
               type="text"
               id="author"
-              value={author}
-              onChange={(e) => setAuthor(e.target.value)}
+              value={inputData.author}
+              onChange={handleChange}
             />
           </FormField>
           <FormField>
@@ -70,8 +75,8 @@ function NewNovel({bookworm }) {
             <Input
               type="text"
               id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={inputData.description}
+              onChange={handleChange}
             />
           </FormField>
           <FormField>
@@ -80,30 +85,19 @@ function NewNovel({bookworm }) {
             type="text"
             id="read"
             >
+              value={inputData.read}
             <option>Fully Read</option>
             <option>Patially Read</option>
-            onChange={(e) => setRead(e.target.value)}
+            onChange={handleChange}
             </select>
           </FormField>
 
           <FormField>
-            <Button color="primary" type="submit">
-              {isLoading ? "Loading..." : "Submit Novel"}
+            <Button color="primary" type="submit" disabled={saving}>
+              {saving? "Loading..." : "Submit Novel"}
             </Button>
           </FormField>
-          <FormField>
-            {errors.map((err) => (
-              <Error key={err}>{err}</Error>
-            ))}
-          </FormField>
         </form>
-      </WrapperChild>
-      <WrapperChild>
-        <h1>{title}</h1>
-        <h1>{author}</h1>
-        <h1>{description}</h1>
-        <h1>{read}</h1>
-        <cite>By {bookworm.email}</cite>     
       </WrapperChild>
     </Wrapper>
   );

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
         #At this point we authenticate the user and we begin the session
         @bookworm = Bookworm.authenticate(params[:email], params[:password])
         if @bookworm
-            session[:author_id] = @bookworm.id #We assign the author id as the value to our author_id cookie
+            session[:bookworm_id] = @bookworm.id #We assign the author id as the value to our author_id cookie
             json_res(@bookworm)
         else
             json_res({message: "Wrong Email or Password. Try Again"})
@@ -22,3 +22,15 @@ class SessionsController < ApplicationController
         json_res({message: "Successfully logged out!"})
     end
 end
+
+# def create
+#     bookworm = Bookworm.find_by(email: params[:email])
+#     if bookworm&.authenticate(params[:password])
+#         session[:bookworm_id] = bookworm.id
+#         render json: bookworm, status: : ok
+#     else
+#         json_res({message: "Wrong Email or Password. Try Again"})
+#     end
+
+# end
+

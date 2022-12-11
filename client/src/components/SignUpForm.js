@@ -3,10 +3,7 @@ import { Button, Error, Input, FormField, Label,} from "../styles";
 
 function SignUpForm({ onLogin }) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  // const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  // const [imageUrl, setImageUrl] = useState("");
-  // const [bio, setBio] = useState("");
+  const [password, setPassword] = useState("")
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,10 +18,7 @@ function SignUpForm({ onLogin }) {
       },
       body: JSON.stringify({
         email,
-        password
-        // password_confirmation: passwordConfirmation,
-        // image_url: imageUrl,
-        // bio,
+        password,
       }),
     }).then((r) => {
       setIsLoading(false);

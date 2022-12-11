@@ -18,7 +18,7 @@ class BookwormsController < ApplicationController
     def show
         bookworm = Bookworm.find_by(id: session[:bookworm_id])
         if bookworm 
-          render json: bookworm
+          render json: bookworm, status: :ok
         else
           render json: {error: "Not authorized"}, status: :unauthorized
         end
@@ -27,7 +27,7 @@ class BookwormsController < ApplicationController
     private
     
     def bookworm_params
-        params.permit(:email, :password, :password_confirmation)
+        params.permit(:email, :password)
     end
     
 end

@@ -18,7 +18,7 @@ function NovelList() {
       {novels.length > 0 ? (
         novels.map((novel) => (
           <Recipe key={novel.id}>
-            <Box>
+            <Box className="list-box">
               <h2>{novel.title}</h2>
               <h2>{novel.author}</h2>
               <h2>{novel.read}</h2>
